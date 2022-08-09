@@ -1,6 +1,6 @@
 // http://pac.itzmx.com
 // http://wutaiping.site/vpn.pac
-var proxy = "PROXY 192.168.31.6:44355;";
+var proxy = "PROXY 192.168.31.6:1080;";
 
 var domains = {
   "pinterest.com": 1,
