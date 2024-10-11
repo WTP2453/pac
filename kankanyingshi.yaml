@@ -86,7 +86,7 @@ dns:
       - 0.0.0.0/32
 
 proxies:
-  - {"name":"tests","type":"vless","server":"2083.kankanyingshi.lol","port":2083,"uuid":"bf7177ff-a0b6-470e-a5b0-3ad9a37b52ca","tls":true,"servername":"2083.kankanyingshi.lol","network":"ws","ws-opts":{"path":"/at854a832t48a3"}}
+  - {"name":"美国","type":"vmess","server":"77.2121999.xyz","port":443,"uuid":"402097d4-170d-4292-b9b1-fbee30a5580f","tls":true,"servername":"77.2121999.xyz","network":"ws","ws-opts":{"path":"/"}}
 proxy-groups:
   - name: 🚀 节点选择
     type: select
