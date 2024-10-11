@@ -87,6 +87,7 @@ dns:
 
 proxies:
   - {"name":"美国","type":"vmess","server":"77.2121999.xyz","port":443,"uuid":"402097d4-170d-4292-b9b1-fbee30a5580f","tls":true,"servername":"77.2121999.xyz","network":"ws","ws-opts":{"path":"/"}}
+  - {name: us, server: vpn.88cloud.asia, port: 4433, type: socks5, username: admin, password: 8Kn82BMOP9, tls: true, skip-cert-verify: true}
 proxy-groups:
   - name: 🚀 节点选择
     type: select
