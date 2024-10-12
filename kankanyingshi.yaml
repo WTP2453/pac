@@ -14,7 +14,7 @@ log-level: info
 external-controller: 0.0.0.0:9090
 proxies:
   - {"type":"vmess","name":"美国","ws-opts":{"path":"/"},"server":"77.2121999.xyz","port":"443","uuid":"402097d4-170d-4292-b9b1-fbee30a5580f","alterId":"0","cipher":"auto","network":"ws","tls":true}
-  - {"type":"vless","name":"uuss","server":"203.kankanyingshi.lol","port":443,"uuid":"dcf8c773-7503-47f7-c676-b0119b3af94d","skip-cert-verify":true,"udp":true,"tls":true,"network":"ws","servername":"203.kankanyingshi.lol","ws-opts":{"path":"/eg8ge66323","headers":{"host":"203.kankanyingshi.lol"}}}
+  - {"type":"vless","name":"uuss","server":"2083.kankanyingshi.lol","port":443,"uuid":"dcf8c773-7503-47f7-c676-b0119b3af94d","skip-cert-verify":true,"udp":true,"tls":true,"network":"ws","servername":"2083.kankanyingshi.lol","ws-opts":{"path":"/eg8ge66323","headers":{"host":"2083.kankanyingshi.lol"}}}
 proxy-groups:
   - name: 🚀 节点选择
     type: select
