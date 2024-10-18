@@ -1,0 +1,90 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: :9090
+dns:
+  enable: true
+  ipv6: false
+  listen: 127.0.0.1:5450
+  default-nameserver:
+    - 119.29.29.29
+    - 119.28.28.28
+    - 1.0.0.1
+    - 208.67.222.222
+    - 1.2.4.8
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://1.1.1.1/dns-query
+    - tls://dns.adguard.com:853
+proxies:
+  - {"type":"vless","name":"v2","server":"8443.kankanyingshi.lol","port":8443,"uuid":"9e68575c-06b7-4e0c-910f-0a851e0069fa","skip-cert-verify":true,"udp":true,"tls":true,"network":"ws","servername":"8443.kankanyingshi.lol","ws-opts":{"path":"/","headers":{"host":"8443.kankanyingshi.lol"}}}
+  - {"type":"vless","name":"uu","server":"test.kankanyingshi.lol","port":443,"uuid":"dc43c6fb-aede-54f1-8f0e-26c1390012fb","skip-cert-verify":true,"udp":true,"tls":true,"network":"ws","servername":"test.kankanyingshi.lol","ws-opts":{"path":"/miss","headers":{"host":"test.kankanyingshi.lol"}}}
+proxy-groups:
+  - name: 🔰 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - uu
+      - v2
+  - name: ♻️ 自动选择
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - uu
+      - v2
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - uu
+      - v2
+  - name: 🌏 国内媒体
+    type: select
+    proxies:
+      - 🎯 全球直连
+      - 🔰 节点选择
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - 🎯 全球直连
+      - 🔰 节点选择
+      - uu
+      - v2
+  - name: 📲 电报信息
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - 🎯 全球直连
+      - uu
+      - v2
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - uu
+      - v2
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+  - name: 🛑 全球拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - uu
+      - v2
