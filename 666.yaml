@@ -1,0 +1,102 @@
+mixed-port: 7890
+allow-lan: false
+mode: rule
+ipv6: false
+log-level: info
+external-controller: 0.0.0.0:9090
+
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+  nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 119.29.29.29
+    - 180.76.76.76
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.local"
+    - "*.invalid"
+    - "*.localhost"
+
+tun:
+  enable: true
+  auto-route: true
+  dns-hijack:
+    - 114.114.114.114
+    - 223.5.5.5
+
+proxies:
+  - name: v2
+    server: 8443.kanyingshi.lol
+    port: 8443
+    type: vless
+    network: ws
+    tls: true
+    skip-cert-verify: true
+    ws-opts:
+      path: /kiss
+    uuid: 5d7a2507-4e0f-4f17-b77b-7a1aa8820873
+
+  - name: uu
+    server: test.kanyingshi.lol
+    port: 443
+    type: vless
+    network: ws
+    tls: true
+    skip-cert-verify: true
+    ws-opts:
+      path: /miss
+    uuid: 2bded14a-6e1c-4b5e-8b63-0b6808b826be
+
+proxy-groups:
+  - name: 节点选择
+    type: select
+    proxies:
+      - 自动选择
+      - DIRECT
+      - v2
+      - uu
+
+  - name: 自动选择
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - v2
+      - uu
+
+  - name: 国外媒体
+    type: select
+    proxies:
+      - 节点选择
+      - v2
+      - uu
+
+  - name: 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - 节点选择
+
+  - name: 漏网之鱼
+    type: select
+    proxies:
+      - 节点选择
+      - v2
+      - uu
+
+rules:
+  - DOMAIN-SUFFIX,google.com,v2
+  - DOMAIN-SUFFIX,youtube.com,v2
+  - DOMAIN-SUFFIX,facebook.com,v2
+  - DOMAIN-SUFFIX,netflix.com,v2
+  - DOMAIN-SUFFIX,twitter.com,v2
+  - DOMAIN-KEYWORD,news,uu
+  - DOMAIN-KEYWORD,forum,uu
+  - GEOIP,CN,DIRECT
+  - MATCH,自动选择
